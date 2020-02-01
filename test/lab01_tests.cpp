@@ -348,3 +348,61 @@ TEST_F(Lab01Fixture, CheckNextType) {
     EXPECT_FALSE(stream4->next_token_is_op());
     stream4->get_next_token();
 }
+    TEST_F(Lab01Fixture, basicCurrentToken_Test){
+    auto mystream = new lab1 ::expressionstream("-2--2");
+    mystream->get_next_token();
+    EXPECT_EQ("-2",mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ("-",mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ("-2",mystream->get_current_token());
+    mystream->get_next_token();
+}
+    TEST_F(Lab01Fixture, multiDigitNextToken_Test1){
+    auto mystream = new lab1 ::expressionstream("-345*-123+1");
+    EXPECT_EQ("-345", mystream->get_next_token());
+    EXPECT_EQ("*", mystream->get_next_token());
+    EXPECT_EQ("-123",mystream->get_next_token());
+    EXPECT_EQ("+",mystream->get_next_token());
+    EXPECT_EQ("1",mystream->get_next_token());
+}
+    TEST_F(Lab01Fixture, multiDigitCurrentToken_Test){
+    auto mystream = new lab1 ::expressionstream("234+12*(-23)");
+    mystream->get_next_token();
+    EXPECT_EQ("234",mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ("+",mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ("12",mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ("*", mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ("(", mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ("-23", mystream->get_current_token());
+    mystream->get_next_token();
+    EXPECT_EQ(")",mystream->get_current_token());
+    mystream->get_next_token();
+}
+    TEST_F(Lab01Fixture, multiDigitNextToken_Test2){
+    auto mystream = new lab1::expressionstream("677/21+12-2");
+    EXPECT_EQ("677",mystream->get_next_token());
+    EXPECT_EQ("/",mystream->get_next_token());
+    EXPECT_EQ("21",mystream->get_next_token());
+    EXPECT_EQ("+",mystream->get_next_token());
+    EXPECT_EQ("12", mystream->get_next_token());
+    EXPECT_EQ("-",mystream->get_next_token());
+    EXPECT_EQ("2", mystream->get_next_token());
+}
+    TEST_F(Lab01Fixture, multiDigitNextToken_Test3){
+    auto mystream = new lab1::expressionstream("45^(-2)+43*23");
+    EXPECT_EQ("45",mystream->get_next_token());
+    EXPECT_EQ("^",mystream->get_next_token());
+    EXPECT_EQ("(", mystream->get_next_token());
+    EXPECT_EQ("-2", mystream->get_next_token());
+    EXPECT_EQ(")", mystream->get_next_token());
+    EXPECT_EQ("+", mystream->get_next_token());
+    EXPECT_EQ("43", mystream->get_next_token());
+    EXPECT_EQ("*", mystream->get_next_token());
+    EXPECT_EQ("23", mystream->get_next_token());
+}
