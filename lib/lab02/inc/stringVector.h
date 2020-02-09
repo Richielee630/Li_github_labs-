@@ -3,7 +3,12 @@
 #define CMPE126S20_LABS_STRINGVECTOR_H
 
 #include <string>
+#include <algorithm>
+#include <iostream>
+#include <bits/stdc++.h>
+#include <cstring>
 
+#define MAX 100
 namespace lab2 {
     class stringVector {
     private:
