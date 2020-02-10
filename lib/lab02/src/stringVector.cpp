@@ -40,11 +40,11 @@ namespace lab2 {
             //std::cout << "False";
             return false;
         }
-        return 0;
         //return ;
     }
 
     void stringVector::append(std::string new_data) {
+        //delete []new_data
         if (allocated_length == 0){
             allocated_length == 1;
             data = new std::string[allocated_length];
@@ -75,20 +75,29 @@ namespace lab2 {
         strcpy(s3,s1);
         strcpy(s1,s2);
         strcpy(s2,s3);
+        std::cout<<s1<<"\n";
+        std::cout<<s2;
+        //return 0 ;
     }
 
     stringVector &stringVector::operator=(stringVector const &rhs) {
+        if (this == &rhs)
+            return *this;
+        const = rhs.length;
+        return *this;
         //return ;
     }
 
     std::string &stringVector::operator[](unsigned position) {
+
+
         //return ;
     }
 
     void stringVector::sort()
     {
-        char arr[][MAX];
         int n;
+        char arr[n][MAX];
         char temp[MAX];
         for (int j=0 ; j<n-1 ; j++)
         {
