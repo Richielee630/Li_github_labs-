@@ -2,7 +2,10 @@
 
 namespace lab3{
     fifo::fifo() {
-    //Reserve 100 spaces in fifo_storage
+        fifo_storage[100];
+        front_index = 0;
+        back_index = -1;
+        //Reserve 100 spaces in fifo_storage
     }
 
     fifo::fifo(std::string input_string) {
@@ -26,6 +29,7 @@ namespace lab3{
     }
 
     int fifo::size(){
+        //return fifo.size();
         //return 0;
     }
 
@@ -33,11 +37,25 @@ namespace lab3{
         //return std::__cxx11::string();
     }
 
-    void fifo::enqueue(std::string input) {
-
+    void fifo::enqueue(std::string input)
+    {
+        if (is_empty())
+        {
+            std::cout << "UnderFLow\nProgram Ended";
+            exit(EXIT_FAILURE);
+        }
+        //back_index = (back_index + 1 ) % fifo_storage;
+        fifo_storage [back_index] = input;
     }
 
-    void fifo::dequeue() {
+    void fifo::dequeue()
+    {
+        if (is_empty())
+        {
+            std::cout << "UnderFLow\nProgram Ended";
+            exit(EXIT_FAILURE);
+        }
 
     }
 }
+

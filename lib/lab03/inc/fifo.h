@@ -1,10 +1,13 @@
 #ifndef CMPE126S20_LABS_QUEUE_H
 #define CMPE126S20_LABS_QUEUE_H
 #include "stringVector.h"
+#include <queue>
+#include <cstdlib>
+#define SIZE 100
 
 namespace lab3 {
     class fifo {
-        lab2::stringVector fifo_storage;
+        lab2::stringVector fifo_storage; // maximum capacity of the queue
         unsigned front_index;
         unsigned back_index;
 

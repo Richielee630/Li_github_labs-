@@ -1,6 +1,7 @@
 #ifndef CMPE126S20_LABS_STACK_H
 #define CMPE126S20_LABS_STACK_H
 #include "stringVector.h"
+#include <stack>
 
 namespace lab3 {
     class lifo {
