@@ -3,13 +3,14 @@
 
 namespace lab2 {
     stringVector::stringVector() {
+        std::string *data = new std::string[allocated_length];
         length = 0;
         allocated_length = 0;
     //std::vector<int> tec
     }
 
     stringVector::~stringVector() {
-        delete data;
+        delete[] data;
     }
 
     unsigned stringVector::size() const{
@@ -27,7 +28,7 @@ namespace lab2 {
         for (int i= 0; i < length; i ++) {
             temp[i] = data[i];
         }
-        delete []data;
+        delete[] data;
         data = temp;
     }
 
@@ -65,19 +66,30 @@ namespace lab2 {
     }
 
     void stringVector::swap(unsigned pos1, unsigned pos2) {
-        int n;
-        std::cin>>n;
-        char s1[n];
-        char s2[n];
-        char s3[n];
-        std::cin>>s1;
-        std::cin>>s2;
-        strcpy(s3,s1);
-        strcpy(s1,s2);
-        strcpy(s2,s3);
-        std::cout<<s1<<"\n";
-        std::cout<<s2;
-        //return 0 ;
+        if (pos1 >= length || pos2 >= length)
+        {
+            throw std::invalid_argument("out of bounds");
+        }
+        else
+        {
+            std::string temp;
+            temp = data[pos1];
+            data[pos1] = data [pos2];
+            data[pos2] = temp;
+        }
+//        int n;
+//        std::cin>>n;
+//        char s1[n];
+//        char s2[n];
+//        char s3[n];
+//        std::cin>>s1;
+//        std::cin>>s2;
+//        strcpy(s3,s1);
+//        strcpy(s1,s2);
+//        strcpy(s2,s3);
+//        std::cout<<s1<<"\n";
+//        std::cout<<s2;
+//        //return 0 ;
     }
 
     stringVector &stringVector::operator=(stringVector const &rhs) {

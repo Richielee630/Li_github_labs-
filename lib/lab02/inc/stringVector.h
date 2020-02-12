@@ -24,7 +24,7 @@ namespace lab2 {
         void reserve(unsigned new_size);
         bool empty()const;
         void append(std::string new_data);
-        static void swap(unsigned pos1, unsigned pos2);
+        void swap(unsigned pos1, unsigned pos2);
         stringVector &operator=(stringVector const &rhs);
         std::string &operator[](unsigned position);
         void sort();
