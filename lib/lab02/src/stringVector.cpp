@@ -95,7 +95,7 @@ namespace lab2 {
     stringVector &stringVector::operator=(stringVector const &rhs) {
         if (this == &rhs)
             return *this;
-        const = rhs.length;
+        //const = rhs.length;
         return *this;
         //return ;
     }
