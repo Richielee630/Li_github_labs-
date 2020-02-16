@@ -10,29 +10,32 @@ namespace lab3{
     }
 
     fifo::fifo(std::string input_string) {
-
+        //fifo_storage = std::string [input_string];
+        fifo_storage = new std::string[fifo_storage.capacity()];
+        fifo_storage[0] = input_string;
     }
 
-    fifo::fifo(const fifo &original) {
-
+    fifo::fifo(const fifo &original){
+        fifo_storage = new std::string[fifo_storage.capacity()];
+        for(int i = 0; i < fifo_storage.size(); i++)
+            *fifo_storage[i] = *original[i];
     }
 
     fifo::~fifo() {
-        //delete []fifo_storage
+        //delete []this->fifo_storage;
     }
 
     fifo &fifo::operator=(const fifo &right) {
+        delete []fifo_storage;
+        fifo_storage = reinterpret_cast<std::string *>(new int[right.back_index]);
+        fifo_storage.size() = right.front_index;
+        memcpy(fifo_storage, right.fifo_storage, sizeof(int) * fifo_storage.size());
         //return <#initializer#>;
     }
 
     bool fifo::is_empty()
     {
-        if (fifo_storage.size() == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return fifo_storage.size() == 0;
     }
 
     int fifo::size()
@@ -48,7 +51,7 @@ namespace lab3{
 
     void fifo::enqueue(std::string input)
     {
-        if (fifo_storage.size() == 0)
+        if (fifo_storage.empty())
         //if (fifo_storage.size() 0);
         {
             std::cout << "UnderFLow\nProgram Ended";
@@ -63,7 +66,7 @@ namespace lab3{
 
     void fifo::dequeue()
     {
-        if (fifo_storage.size() == 0)
+        if (fifo_storage.empty())
         {
             std::cout << "UnderFLow\nProgram Ended";
             exit(EXIT_FAILURE);

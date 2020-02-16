@@ -25,11 +25,7 @@ namespace lab3 {
 
     bool lifo::is_empty() {
         {
-            if (lifo_storage.size() == 0) {
-                return true;
-            } else {
-                return false;
-            }
+            return lifo_storage.size() == 0;
         }
         //return false;
     }
@@ -46,7 +42,7 @@ namespace lab3 {
     }
 
     void lifo::push(std::string input) {
-        if (lifo_storage.size() == 0) {
+        if (lifo_storage.empty()) {
             std::cout << "UnderFLow\nProgram Ended";
             exit(EXIT_FAILURE);
         }
@@ -56,7 +52,7 @@ namespace lab3 {
 
     void lifo::pop()
     {
-        if (lifo_storage.size() == 0) {
+        if (lifo_storage.empty()) {
             std::cout << "UnderFLow\nProgram Ended";
             exit(EXIT_FAILURE);
         }

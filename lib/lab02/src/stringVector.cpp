@@ -92,35 +92,50 @@ namespace lab2 {
 //        //return 0 ;
     }
 
-    stringVector &stringVector::operator=(stringVector const &rhs) {
-        if (this == &rhs)
-            return *this;
+    //stringVector &stringVector::operator=(std::string *rhs) {
+        //if (this == &rhs)
+            //return *this;
         //const = rhs.length;
-        return *this;
+        //return *this;
         //return ;
+        //delete []data;
+        //data = reinterpret_cast<std::string *>(new int[rhs.length]);
+        //length = rhs.length;
+        //memcpy(data, rhs.data, sizeof(int) * length);
+    //}
+    stringVector &stringVector::operator=(stringVector const &rhs) {
+        delete[]data;
+        data = reinterpret_cast<std::string *>(new int[rhs.length]);
+        length = rhs.length;
+        memcpy(data, rhs.data, sizeof(int) * length);
     }
 
-    std::string &stringVector::operator[](unsigned position) {
-
-
-        //return ;
-    }
-
-    void stringVector::sort()
+    std::string &stringVector::operator[](unsigned position)
     {
-        int n;
-        char arr[n][MAX];
-        char temp[MAX];
-        for (int j=0 ; j<n-1 ; j++)
+
+    }
+
+    void stringVector::sort() {
         {
-            for (int i=j+1 ; i<n ; i++) {
-                if (strcmp(arr[j],arr[i]) > 0 )
-                {
-                    strcpy(temp, arr[j]);
-                    strcpy(arr[j], arr[i]);
-                    strcpy(arr[i], temp);
+            int n;
+
+            char arr[n][MAX];
+            char temp[MAX];
+            for (int j=0 ; j<n-1 ; j++)
+            {
+                for (int i=j+1 ; i<n ; i++) {
+                    if (strcmp(arr[j],arr[i]) > 0 )
+                    {
+                        strcpy(temp, arr[j]);
+                        strcpy(arr[j], arr[i]);
+                        strcpy(arr[i], temp);
+                    }
                 }
             }
         }
+
+
     }
+
 }
+

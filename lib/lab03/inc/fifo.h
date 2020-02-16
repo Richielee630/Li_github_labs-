@@ -3,6 +3,8 @@
 #include "stringVector.h"
 //#include <queue>
 #include <cstdlib>
+#include <algorithm>
+#include <cstring>
 #define SIZE 100
 
 namespace lab3 {
@@ -16,7 +18,7 @@ namespace lab3 {
         explicit fifo(std::string input_string);        //Create new fifo from string input
         fifo(const fifo &original);                     //Copy constructor
         virtual ~fifo();                                //Destructor
-        fifo &operator=(const fifo &right);            //Assignment operator
+        fifo &operator=(const fifo &right);            //Assignment operatr
 
         bool is_empty();  // Return true if the fifo is empty and false if it is not
         int size();  // Return the size of the fifo
