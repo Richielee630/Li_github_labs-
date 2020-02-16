@@ -3,7 +3,7 @@
 
 namespace lab2 {
     stringVector::stringVector() {
-        std::string *data = new std::string[allocated_length];
+        new std::string[allocated_length];
         length = 0;
         allocated_length = 0;
     //std::vector<int> tec
@@ -24,7 +24,7 @@ namespace lab2 {
     }
 
     void stringVector::reserve(unsigned new_size) {
-        std::string *temp = new std::string[new_size];
+        auto *temp = new std::string[new_size];
         for (int i= 0; i < length; i ++) {
             temp[i] = data[i];
         }
@@ -33,26 +33,19 @@ namespace lab2 {
     }
 
     bool stringVector::empty() const{
-        if (length == 0) {
-            //std::cout << "True";
-            return true;
-        }
-        else {
-            //std::cout << "False";
-            return false;
-        }
+        return length == 0;
         //return ;
     }
 
     void stringVector::append(std::string new_data) {
         //delete []new_data
         if (allocated_length == 0){
-            allocated_length == 1;
+            allocated_length = 1;
             data = new std::string[allocated_length];
             data[0] = new_data;
         }
         else if (length == allocated_length){
-            std::string *temp = new std::string[2*allocated_length];
+            auto *temp = new std::string[2*allocated_length];
             for (int i= 0; i < length; i ++){
                 temp[i] = data[i];
             }
