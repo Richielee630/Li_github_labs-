@@ -124,7 +124,6 @@ namespace lab2 {
 
                 for (int j = 0; j < i; j++) {
                     if (data[j].compare(data[j + 1]) > 0) {
-//Swap
                         str = data[j];
                         data[j] = data[j + 1];
                         data[j + 1] = str;
