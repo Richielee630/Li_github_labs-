@@ -26,15 +26,20 @@ namespace lab3{
     }
 
     fifo::~fifo() {
+        front_index=-1;
+        back_index=-1;
         //delete []this->fifo_storage;
     }
 
     fifo &fifo::operator=(const fifo &right)
     {
-        //delete []fifo_storage;
-        //fifo_storage = reinterpret_cast<std::string *>(new int[right.fifo_storage[back_index]);
-        //fifo_storage[front_index] = right.fifo_storage[front_index];
-       //memcpy(fifo_storage, right.fifo_storage, sizeof(int) * fifo_storage.size());
+        if (&right == this){
+            return (*this);
+        }
+        fifo_storage.reserve(100);
+        this->front_index = right.front_index;
+        this->back_index = right.back_index;
+
     }
 
         //return <#initializer#>;

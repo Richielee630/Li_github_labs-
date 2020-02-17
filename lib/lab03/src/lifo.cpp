@@ -22,10 +22,18 @@ namespace lab3 {
     }
 
     lifo::~lifo() {
+        index = -1;
         //delete []lifo_storage;
     }
 
     lifo &lifo::operator=(const lifo &right) {
+        lifo_storage.reserve(right.lifo_storage.capacity());
+        index = right.index;
+        for (int i = 0; i <= index; i++) {
+            this->lifo_storage[i] = right.lifo_storage[i];
+        }
+
+        return *this;
         //return <#initializer#>;
     }
 
@@ -38,8 +46,15 @@ namespace lab3 {
 
     int lifo::size()
     {
-        return lifo_storage.size() + 1;
-        //return 0;
+        int temp;
+        if (index > -1) {
+            for (int i = 0; i <= index; i++) {
+                temp++;
+            }
+        } else {
+            temp = 0;
+        }
+        return temp;
     }
 
     std::string lifo::top() {
