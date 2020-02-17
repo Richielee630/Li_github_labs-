@@ -26,6 +26,7 @@ namespace lab3 {
         std::string top();           // Return the front string of the fifo.
         void enqueue(std::string input);   // Add input string to the back of the fifo
         void dequeue();                    // Remove the front string from the fifo
+        //void RemoveALL();
     };
 }
 

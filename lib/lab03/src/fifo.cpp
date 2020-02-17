@@ -10,33 +10,41 @@ namespace lab3{
     }
 
     fifo::fifo(std::string input_string) {
-        //fifo_storage = std::string [input_string];
-        fifo_storage = new std::string[fifo_storage.capacity()];
-        fifo_storage[0] = input_string;
+        //fifo_storage = std::string [fifo_storage.capacity();
+        //fifo_storage = new std::string[fifo_storage.capacity()];
+        fifo_storage[front_index] = input_string;
+        front_index++;
     }
 
     fifo::fifo(const fifo &original){
         fifo_storage = new std::string[fifo_storage.capacity()];
-        for(int i = 0; i < fifo_storage.size(); i++)
-            *fifo_storage[i] = *original[i];
+        //for(int i = 0; i < fifo_storage.size(); i++)
+            //*fifo_storage[i] = *original[i];
+            fifo_storage[front_index] = NULL;
+            *this = original;
     }
 
     fifo::~fifo() {
         //delete []this->fifo_storage;
     }
 
-    fifo &fifo::operator=(const fifo &right) {
+    fifo &fifo::operator=(const fifo &right)
+    {
         delete []fifo_storage;
-        fifo_storage = reinterpret_cast<std::string *>(new int[right.back_index]);
-        fifo_storage.size() = right.front_index;
+        fifo_storage = reinterpret_cast<std::string *>(new int[right.fifo_storage[back_index]);
+        fifo_storage[front_index] = right.fifo_storage[front_index];
         memcpy(fifo_storage, right.fifo_storage, sizeof(int) * fifo_storage.size());
-        //return <#initializer#>;
     }
 
-    bool fifo::is_empty()
-    {
-        return fifo_storage.size() == 0;
+        //return <#initializer#>;
+
+    bool fifo::is_empty() {
+        return fifo_storage.empty();
+        //return fifo_storage[front_index] == NULL
+        return false;
     }
+
+    //return *this;
 
     int fifo::size()
     {
@@ -75,5 +83,7 @@ namespace lab3{
         front_index = (front_index + 1) % fifo_storage.capacity();
         fifo_storage[front_index--];
     }
+
+
 }
 

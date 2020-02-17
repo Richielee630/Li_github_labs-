@@ -8,7 +8,8 @@ namespace lab3 {
     }
 
     lifo::lifo(std::string input_string) {
-
+        lifo_storage[index] = input_string;
+        index++;
     }
 
     lifo::lifo(const lifo &original) {
