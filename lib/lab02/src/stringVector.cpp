@@ -105,30 +105,32 @@ namespace lab2 {
 
     std::string &stringVector::operator[](unsigned position)
     {
-
-    }
-
-    void stringVector::sort() {
         {
-            int n;
-
-            char arr[n][MAX];
-            char temp[MAX];
-            for (int j=0 ; j<n-1 ; j++)
-            {
-                for (int i=j+1 ; i<n ; i++) {
-                    if (strcmp(arr[j],arr[i]) > 0 )
-                    {
-                        strcpy(temp, arr[j]);
-                        strcpy(arr[j], arr[i]);
-                        strcpy(arr[i], temp);
-                    }
-                }
+            if(position > length){
+                throw std::out_of_range("Position out of range");
             }
+
+            return data[position - 1];
         }
 
 
     }
 
+    void stringVector::sort() {
+        {
+            string str;
+
+            for (int i = (length - 1); i > 0; i--) {
+
+                for (int j = 0; j < i; j++) {
+                    if (data[j].compare(data[j + 1]) > 0) {
+//Swap
+                        str = data[j];
+                        data[j] = data[j + 1];
+                        data[j + 1] = str;
+                    }
+                }
+            }
+        }
 }
 
