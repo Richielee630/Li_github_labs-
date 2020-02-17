@@ -8,12 +8,17 @@ namespace lab3 {
     }
 
     lifo::lifo(std::string input_string) {
-        lifo_storage[index] = input_string;
-        index++;
+        lifo_storage.reserve(100);
+        index = 1;
+        lifo_storage [0] = input_string;
     }
 
     lifo::lifo(const lifo &original) {
-
+        lifo_storage.reserve(original.lifo_storage.capacity());
+        index = original.index;
+        for (int i = 0; i < original.lifo_storage.size(); i++){
+            this->lifo_storage[i] = original.lifo_storage [i];
+        }
     }
 
     lifo::~lifo() {
