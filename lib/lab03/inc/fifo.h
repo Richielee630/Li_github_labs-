@@ -2,10 +2,9 @@
 #define CMPE126S20_LABS_QUEUE_H
 #include "stringVector.h"
 //#include <queue>
-#include <cstdlib>
-#include <algorithm>
-#include <cstring>
-#define SIZE 100
+//#include <cstdlib>
+//#include <algorithm>
+//include <cstring>
 
 namespace lab3 {
     class fifo {

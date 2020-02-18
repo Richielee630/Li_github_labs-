@@ -17,7 +17,7 @@ namespace lab3 {
         lifo_storage.reserve(original.lifo_storage.capacity());
         index = original.index;
         for (int i = 0; i < original.lifo_storage.size(); i++){
-            this->lifo_storage[i] = original.lifo_storage [i];
+            //this->lifo_storage[i] = original.lifo_storage [i];
         }
     }
 
@@ -30,7 +30,7 @@ namespace lab3 {
         lifo_storage.reserve(right.lifo_storage.capacity());
         index = right.index;
         for (int i = 0; i <= index; i++) {
-            this->lifo_storage[i] = right.lifo_storage[i];
+            //this->lifo_storage[i] = right.lifo_storage[i];
         }
 
         return *this;

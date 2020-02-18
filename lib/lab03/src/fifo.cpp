@@ -21,7 +21,7 @@ namespace lab3{
         front_index = original.front_index;
         back_index = original.back_index;
         for (int i = 0; i < original.fifo_storage.size(); i++){
-            this->fifo_storage[i] = original.fifo_storage [i];
+            //this->fifo_storage[i] = original.fifo_storage [i];
         }
     }
 
