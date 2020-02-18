@@ -18,7 +18,7 @@ namespace lab3 {
         index = original.index;
         for (int i = 0; i < original.lifo_storage.size(); i++){
             //this->lifo_storage[i] = original.lifo_storage [i];
-        }zhaoqin
+        }
     }
 
     lifo::~lifo() {
