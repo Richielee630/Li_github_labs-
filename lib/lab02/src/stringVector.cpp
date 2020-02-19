@@ -51,7 +51,6 @@ namespace lab2 {
     }
 
     void stringVector::append(std::string new_data) {
-        //delete []new_data
         if (allocated_length == 0) {
             allocated_length = 1;
             //length = 1;
@@ -59,7 +58,8 @@ namespace lab2 {
             data[0] = new_data;
         } else if (length == allocated_length) {
             auto *temp = new std::string[2 * allocated_length];
-            for (int i = 0; i < allocated_length; i++) {
+            for (int i = 0; i < allocated_length; i++)
+            {
                 temp[i] = data[i];
             }
             allocated_length = 2* allocated_length;
@@ -96,29 +96,24 @@ namespace lab2 {
     }
 
     std::string &stringVector::operator[](unsigned position) {
-
-            if (position >= allocated_length) {
-                throw std::out_of_range("Position out of range");
-            }
-
-            return data[position];
+            //if (position >= allocated_length)
+           //{
+                //throw std::invalid_argument("Position out of range");
+            //}
+            //return data[position];
+        if(position >= allocated_length){
+            throw std::out_of_range("Position out of range");
+        }
+        return data[position];
     }
 
     void stringVector::sort() {
-        {
-            std::string str;
-
-            for (int i = (length - 1); i > 0; i--) {
-
-                for (int j = 0; j < i; j++) {
-                    if (data[j].compare(data[j + 1]) > 0) {
-                        str = data[j];
-                        data[j] = data[j + 1];
-                        data[j + 1] = str;
-                    }
+        for (int i = 0; i < length; i++) {
+            for (int j = 0; j < length - 1; j++) {
+                if (data[j].compare(data[j + 1]) > 0) {
+                    swap(j, j + 1);
                 }
             }
         }
     }
-
 }

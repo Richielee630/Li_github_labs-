@@ -16,8 +16,8 @@ namespace lab3 {
     lifo::lifo(const lifo &original) {
         lifo_storage.reserve(original.lifo_storage.capacity());
         index = original.index;
-        for (int i = 0; i < original.lifo_storage.size(); i++){
-            //this->lifo_storage[i] = original.lifo_storage [i];
+        for (int i = 0; i < index; i++){
+            lifo_storage[i] = original.lifo_storage[i];
         }
     }
 
@@ -27,34 +27,36 @@ namespace lab3 {
     }
 
     lifo &lifo::operator=(const lifo &right) {
-        lifo_storage.reserve(right.lifo_storage.capacity());
         index = right.index;
+        lifo_storage.reserve(right.lifo_storage.capacity());
         for (int i = 0; i <= index; i++) {
-            //this->lifo_storage[i] = right.lifo_storage[i];
+            lifo_storage[i] = right.lifo_storage[i];
         }
-
         return *this;
         //return <#initializer#>;
     }
 
     bool lifo::is_empty() {
-        {
-            return lifo_storage.size() == 0;
+        if(index == -1){
+            return true;
         }
-        //return false;
+
+        return false;
     }
+        //return false;
 
     int lifo::size()
     {
-        int temp;
-        if (index > -1) {
-            for (int i = 0; i <= index; i++) {
-                temp++;
-            }
-        } else {
-            temp = 0;
-        }
-        return temp;
+//        int temp;
+//        if (index > -1) {
+//            for (int i = 0; i <= index; i++) {
+//                temp++;
+//            }
+//        } else {
+//            temp = 0;
+//        }
+//        return temp;
+        return lifo_storage.size();
     }
 
     std::string lifo::top() {
@@ -63,9 +65,14 @@ namespace lab3 {
     }
 
     void lifo::push(std::string input) {
-        if (lifo_storage.empty()) {
-            std::cout << "UnderFLow\nProgram Ended";
-            exit(EXIT_FAILURE);
+//        if (lifo_storage.empty())
+//        {
+//            std::cout << "UnderFLow\nProgram Ended";
+//            exit(EXIT_FAILURE);
+//        }
+        if (index == lifo_storage.capacity() - 1)
+        {
+            lifo_storage.reserve(lifo_storage.capacity() + 20);
         }
         std::cout << "Inserting" << input << '\n';
         lifo_storage[++index] = input;
@@ -78,6 +85,6 @@ namespace lab3 {
             exit(EXIT_FAILURE);
         }
         std::cout << "Removing" << lifo_storage[index] <<'\n';
-        lifo_storage [index--];
+        index--;
     }
 }

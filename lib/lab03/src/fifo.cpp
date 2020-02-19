@@ -11,9 +11,9 @@ namespace lab3{
 
     fifo::fifo(std::string input_string) {
         fifo_storage.reserve(100);
-        front_index = 0;
-        back_index = 1;
         fifo_storage [0] = input_string;
+        front_index = 0;
+        back_index = 0;
     }
 
     fifo::fifo(const fifo &original){
@@ -28,25 +28,26 @@ namespace lab3{
     fifo::~fifo() {
         front_index=-1;
         back_index=-1;
-        //delete []this->fifo_storage;
     }
 
     fifo &fifo::operator=(const fifo &right)
     {
-        if (&right == this){
-            return (*this);
+        fifo_storage.reserve(right.fifo_storage.capacity());
+//        fifo_storage.reserve(100);
+        front_index = right.front_index;
+        back_index = right.back_index;
+        for(int i = 0 ; i<right.fifo_storage.size() ; i++){
+            fifo_storage[i] = right.fifo_storage[i];
         }
-        fifo_storage.reserve(100);
-        this->front_index = right.front_index;
-        this->back_index = right.back_index;
-
+        return *this;
     }
 
         //return <#initializer#>;
 
     bool fifo::is_empty() {
-        return fifo_storage.empty();
-        //return fifo_storage[front_index] == NULL
+        if(front_index == -1){
+            return true;
+        }
         return false;
     }
 
@@ -72,10 +73,8 @@ namespace lab3{
             exit(EXIT_FAILURE);
         }
         std::cout <<"Inserting" << input <<'\n';
-        back_index = (back_index + 1 ) % fifo_storage.capacity();
         fifo_storage [back_index] = input;
-        //fifo_storage.size()++;
-        fifo_storage [++back_index];
+        back_index++;
     }
 
     void fifo::dequeue()
@@ -86,8 +85,7 @@ namespace lab3{
             exit(EXIT_FAILURE);
         }
         std::cout <<"Removing" <<fifo_storage [front_index] <<'\n';
-        front_index = (front_index + 1) % fifo_storage.capacity();
-        fifo_storage[front_index--];
+        front_index++;
     }
 
 
