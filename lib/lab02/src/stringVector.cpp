@@ -3,13 +3,15 @@
 
 namespace lab2 {
     stringVector::stringVector() {
-        new std::string[allocated_length];
+        //new std::string[allocated_length];
+        data = nullptr;
         length = 0;
         allocated_length = 0;
         //std::vector<int> tec
     }
 
     stringVector::~stringVector() {
+        if (allocated_length > 0)
         delete[] data;
     }
 
@@ -24,12 +26,23 @@ namespace lab2 {
     }
 
     void stringVector::reserve(unsigned new_size) {
-        auto *temp = new std::string[new_size];
-        for (int i = 0; i < length; i++) {
-            temp[i] = data[i];
+        std::string *temp = new std::string[new_size]; // Create a new array
+        for(int i =0; i < new_size; i++){
+            if(i < length){
+                temp[i] = data[i];
+            }
+            else
+                break;
         }
-        delete[] data;
+
+        delete []data ;
         data = temp;
+
+        allocated_length = new_size;
+
+        if(length > new_size){
+            length = new_size;
+        }
     }
 
     bool stringVector::empty() const {
@@ -41,15 +54,18 @@ namespace lab2 {
         //delete []new_data
         if (allocated_length == 0) {
             allocated_length = 1;
+            //length = 1;
             data = new std::string[allocated_length];
             data[0] = new_data;
         } else if (length == allocated_length) {
             auto *temp = new std::string[2 * allocated_length];
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < allocated_length; i++) {
                 temp[i] = data[i];
             }
+            allocated_length = 2* allocated_length;
             delete[]data;
             data = temp;
+            temp [length] =new_data;
         } else {
             data[length] = new_data;
         }
@@ -65,49 +81,27 @@ namespace lab2 {
             data[pos1] = data[pos2];
             data[pos2] = temp;
         }
-//        int n;
-//        std::cin>>n;
-//        char s1[n];
-//        char s2[n];
-//        char s3[n];
-//        std::cin>>s1;
-//        std::cin>>s2;
-//        strcpy(s3,s1);
-//        strcpy(s1,s2);
-//        strcpy(s2,s3);
-//        std::cout<<s1<<"\n";
-//        std::cout<<s2;
-//        //return 0 ;
     }
 
-    //stringVector &stringVector::operator=(std::string *rhs) {
-    //if (this == &rhs)
-    //return *this;
-    //const = rhs.length;
-    //return *this;
-    //return ;
-    //delete []data;
-    //data = reinterpret_cast<std::string *>(new int[rhs.length]);
-    //length = rhs.length;
-    //memcpy(data, rhs.data, sizeof(int) * length);
-    //}
+
     stringVector &stringVector::operator=(stringVector const &rhs) {
-        delete[]data;
-        data = reinterpret_cast<std::string *>(new int[rhs.length]);
         length = rhs.length;
-        memcpy(data, rhs.data, sizeof(int) * length);
+        allocated_length = rhs.allocated_length;
+        std::string *data = new std::string [allocated_length];
+        for (int i; i < length; i++ ){
+            data[i] = rhs.data[i];
+        }
+        return *this;
+        //memcpy(data, rhs.data, sizeof(int) * length);
     }
 
     std::string &stringVector::operator[](unsigned position) {
-        {
-            if (position > length) {
+
+            if (position >= allocated_length) {
                 throw std::out_of_range("Position out of range");
             }
 
-            return data[position - 1];
-        }
-
-
+            return data[position];
     }
 
     void stringVector::sort() {
