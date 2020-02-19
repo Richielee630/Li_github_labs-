@@ -88,11 +88,12 @@ namespace lab2 {
         length = rhs.length;
         allocated_length = rhs.allocated_length;
         std::string *data = new std::string [allocated_length];
-        for (int i; i < length; i++ ){
+        for (int i; i < length; i++ )
+        {
             data[i] = rhs.data[i];
         }
+//        data= rhs.data;
         return *this;
-        //memcpy(data, rhs.data, sizeof(int) * length);
     }
 
     std::string &stringVector::operator[](unsigned position) {

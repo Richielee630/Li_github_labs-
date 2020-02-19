@@ -20,9 +20,9 @@ namespace lab3{
         fifo_storage.reserve(original.fifo_storage.capacity());
         front_index = original.front_index;
         back_index = original.back_index;
-        for (int i = 0; i < original.fifo_storage.size(); i++){
-            //this->fifo_storage[i] = original.fifo_storage [i];
-        }
+//        for (int i = 0; i < original.fifo_storage.size(); i++){
+            this->fifo_storage = original.fifo_storage;
+//        }
     }
 
     fifo::~fifo() {
@@ -36,9 +36,9 @@ namespace lab3{
 //        fifo_storage.reserve(100);
         front_index = right.front_index;
         back_index = right.back_index;
-        for(int i = 0 ; i<right.fifo_storage.size() ; i++){
-            fifo_storage[i] = right.fifo_storage[i];
-        }
+//        for(int i = 0 ; i<right.fifo_storage.size() ; i++){
+            fifo_storage = right.fifo_storage;
+//        }
         return *this;
     }
 
@@ -55,7 +55,16 @@ namespace lab3{
 
     int fifo::size()
     {
-        return fifo_storage.size();
+        int temp;
+        if (back_index - front_index > 0) {
+            for (int i = 0; i <= front_index; i++) {
+                temp++;
+            }
+        } else {
+            temp = 0;
+        }
+        return temp;
+        //return fifo_storage.size();
         //return 0;
     }
 
