@@ -55,15 +55,6 @@ namespace lab3{
 
     int fifo::size()
     {
-//        int temp;
-//        if (back_index - front_index > 0) {
-//            for (int i = 0; i <= front_index; i++) {
-//                temp++;
-//            }
-//        } else {
-//            temp = 0;
-//        }
-//        return temp;
         return (back_index-front_index) % fifo_storage.capacity();
         //return 0;
     }
@@ -83,11 +74,7 @@ namespace lab3{
 
     void fifo::dequeue()
     {
-//        if (fifo_storage.empty())
-//        {
-//            std::cout << "UnderFLow\nProgram Ended";
-//            exit(EXIT_FAILURE);
-//        }
+
         std::cout <<"Removing" <<fifo_storage [front_index + 1] <<'\n';
         front_index++;
     }

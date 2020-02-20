@@ -4,8 +4,6 @@ namespace lab3 {
     lifo::lifo() {
         lifo_storage.reserve(100);
         index = -1;
-        //lifo_storage = new std::string[lifo_storage.capacity()];
-        //Reserve 100 spaces in lifo_storage
     }
 
     lifo::lifo(std::string input_string) {
