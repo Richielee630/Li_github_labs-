@@ -4,8 +4,8 @@ namespace lab3{
     fifo::fifo()
     {
         fifo_storage.reserve(100);
-        front_index = -1;
-        back_index = -1;
+        front_index = 0;
+        back_index = 0;
         //Reserve 100 spaces in fifo_storage
     }
 
@@ -45,7 +45,7 @@ namespace lab3{
         //return <#initializer#>;
 
     bool fifo::is_empty() {
-        if(front_index == -1){
+        if(front_index == back_index){
             return true;
         }
         return false;
@@ -55,16 +55,16 @@ namespace lab3{
 
     int fifo::size()
     {
-        int temp;
-        if (back_index - front_index > 0) {
-            for (int i = 0; i <= front_index; i++) {
-                temp++;
-            }
-        } else {
-            temp = 0;
-        }
-        return temp;
-        //return fifo_storage.size();
+//        int temp;
+//        if (back_index - front_index > 0) {
+//            for (int i = 0; i <= front_index; i++) {
+//                temp++;
+//            }
+//        } else {
+//            temp = 0;
+//        }
+//        return temp;
+        return (back_index-front_index) % fifo_storage.capacity();
         //return 0;
     }
 
@@ -75,12 +75,7 @@ namespace lab3{
 
     void fifo::enqueue(std::string input)
     {
-        if (fifo_storage.empty())
-        //if (fifo_storage.size() 0);
-        {
-            std::cout << "UnderFLow\nProgram Ended";
-            exit(EXIT_FAILURE);
-        }
+
         std::cout <<"Inserting" << input <<'\n';
         fifo_storage [back_index] = input;
         back_index++;
@@ -88,12 +83,12 @@ namespace lab3{
 
     void fifo::dequeue()
     {
-        if (fifo_storage.empty())
-        {
-            std::cout << "UnderFLow\nProgram Ended";
-            exit(EXIT_FAILURE);
-        }
-        std::cout <<"Removing" <<fifo_storage [front_index] <<'\n';
+//        if (fifo_storage.empty())
+//        {
+//            std::cout << "UnderFLow\nProgram Ended";
+//            exit(EXIT_FAILURE);
+//        }
+        std::cout <<"Removing" <<fifo_storage [front_index + 1] <<'\n';
         front_index++;
     }
 

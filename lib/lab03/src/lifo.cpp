@@ -4,13 +4,14 @@ namespace lab3 {
     lifo::lifo() {
         lifo_storage.reserve(100);
         index = -1;
+        //lifo_storage = new std::string[lifo_storage.capacity()];
         //Reserve 100 spaces in lifo_storage
     }
 
     lifo::lifo(std::string input_string) {
         lifo_storage.reserve(100);
         index = 1;
-        lifo_storage [0] = input_string;
+        lifo_storage [index] = input_string;
     }
 
     lifo::lifo(const lifo &original) {
@@ -47,16 +48,7 @@ namespace lab3 {
 
     int lifo::size()
     {
-        int temp;
-        if (index > -1) {
-            for (int i = 0; i <= index; i++) {
-                temp++;
-            }
-        } else {
-            temp = 0;
-        }
-        return temp;
-//        return lifo_storage.size();
+        return index + 1 ;
     }
 
     std::string lifo::top() {
@@ -65,25 +57,13 @@ namespace lab3 {
     }
 
     void lifo::push(std::string input) {
-//        if (lifo_storage.empty())
-//        {
-//            std::cout << "UnderFLow\nProgram Ended";
-//            exit(EXIT_FAILURE);
-//        }
-        if (index == lifo_storage.capacity() - 1)
-//        {
-//            lifo_storage.reserve(lifo_storage.capacity() + 20);
-//        }
         std::cout << "Inserting" << input << '\n';
-        lifo_storage[++index] = input;
+        lifo_storage[index + 1] = input;
+        index++;
     }
 
     void lifo::pop()
     {
-        if (lifo_storage.empty()) {
-            std::cout << "UnderFLow\nProgram Ended";
-            exit(EXIT_FAILURE);
-        }
         std::cout << "Removing" << lifo_storage[index] <<'\n';
         index--;
     }
