@@ -37,7 +37,7 @@ namespace lab3{
         front_index = right.front_index;
         back_index = right.back_index;
 //        for(int i = 0 ; i<right.fifo_storage.size() ; i++){
-            fifo_storage = right.fifo_storage;
+        fifo_storage = right.fifo_storage;
 //        }
         return *this;
     }
@@ -78,7 +78,5 @@ namespace lab3{
         std::cout <<"Removing" <<fifo_storage [front_index + 1] <<'\n';
         front_index++;
     }
-
-
 }
 

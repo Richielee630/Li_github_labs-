@@ -16,7 +16,7 @@ namespace lab3 {
         lifo_storage.reserve(original.lifo_storage.capacity());
         index = original.index;
 //        for (int i = 0; i < index; i++){
-            lifo_storage = original.lifo_storage;
+        lifo_storage = original.lifo_storage;
 //        }
     }
 
@@ -29,7 +29,7 @@ namespace lab3 {
         index = right.index;
         lifo_storage.reserve(right.lifo_storage.capacity());
 //        for (int i = 0; i <= index; i++) {
-            lifo_storage= right.lifo_storage;
+        lifo_storage= right.lifo_storage;
 //        }
         return *this;
         //return <#initializer#>;
@@ -42,7 +42,7 @@ namespace lab3 {
 
         return false;
     }
-        //return false;
+    //return false;
 
     int lifo::size()
     {
