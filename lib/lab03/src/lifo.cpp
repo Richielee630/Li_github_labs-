@@ -26,13 +26,17 @@ namespace lab3 {
     }
 
     lifo &lifo::operator=(const lifo &right) {
+        if(this == &right){
+            return *this;
+        }
         index = right.index;
-        lifo_storage.reserve(right.lifo_storage.capacity());
-//        for (int i = 0; i <= index; i++) {
+        //allocated_length = rhs.allocated_length;
+        //data = new std::string[allocated_length];
         lifo_storage= right.lifo_storage;
-//        }
+        //for(int i=0; i<allocated_length; i++){
+        //    data[i]=rhs.data[i];
+        //}
         return *this;
-        //return <#initializer#>;
     }
 
     bool lifo::is_empty() {

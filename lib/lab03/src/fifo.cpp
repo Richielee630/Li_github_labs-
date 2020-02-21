@@ -21,7 +21,7 @@ namespace lab3{
         front_index = original.front_index;
         back_index = original.back_index;
 //        for (int i = 0; i < original.fifo_storage.size(); i++){
-            this->fifo_storage = original.fifo_storage;
+        fifo_storage = original.fifo_storage;
 //        }
     }
 
@@ -32,13 +32,14 @@ namespace lab3{
 
     fifo &fifo::operator=(const fifo &right)
     {
-        fifo_storage.reserve(right.fifo_storage.capacity());
-//        fifo_storage.reserve(100);
+        if(this == &right){
+            return *this;
+        }
+        //allocated_length = rhs.allocated_length;
+        //data = new std::string[allocated_length];
         front_index = right.front_index;
         back_index = right.back_index;
-//        for(int i = 0 ; i<right.fifo_storage.size() ; i++){
         fifo_storage = right.fifo_storage;
-//        }
         return *this;
     }
 

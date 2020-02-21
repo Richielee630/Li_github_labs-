@@ -85,25 +85,29 @@ namespace lab2 {
 
 
     stringVector &stringVector::operator=(stringVector const &rhs) {
+        if(this == &rhs){
+            return *this;
+        }
         length = rhs.length;
         allocated_length = rhs.allocated_length;
-        std::string *data = new std::string [allocated_length];
-        for (int i; i < length; i++ )
-        {
-            data[i] = rhs.data[i];
+        data = new std::string[allocated_length];
+        for(int i=0; i<allocated_length; i++){
+            data[i]=rhs.data[i];
         }
-//        data= rhs.data;
         return *this;
+//        length = rhs.length;
+//        allocated_length = rhs.allocated_length;
+//        std::string *data = new std::string [allocated_length];
+//        for (int i; i < length; i++ )
+//        {
+//            data[i] = rhs.data[i];
+//        }
+//        return *this;
     }
 
     std::string &stringVector::operator[](unsigned position) {
-            //if (position >= allocated_length)
-           //{
-                //throw std::invalid_argument("Position out of range");
-            //}
-            //return data[position];
         if(position >= allocated_length){
-            throw std::out_of_range("Position out of range");
+            throw std::invalid_argument("Position Out Of Range");
         }
         return data[position];
     }
