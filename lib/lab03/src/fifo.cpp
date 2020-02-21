@@ -17,7 +17,7 @@ namespace lab3{
     }
 
     fifo::fifo(const fifo &original){
-        fifo_storage.reserve(original.fifo_storage.capacity());
+        //fifo_storage.reserve(original.fifo_storage.capacity());
         front_index = original.front_index;
         back_index = original.back_index;
         fifo_storage = original.fifo_storage;

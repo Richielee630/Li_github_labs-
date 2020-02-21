@@ -13,7 +13,7 @@ namespace lab3 {
     }
 
     lifo::lifo(const lifo &original) {
-        lifo_storage.reserve(original.lifo_storage.capacity());
+        //lifo_storage.reserve(original.lifo_storage.capacity());
         index = original.index;
         lifo_storage = original.lifo_storage;
     }
