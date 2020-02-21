@@ -45,11 +45,7 @@ namespace lab3 {
     }
 
     int fifo::size() {
-//        if (front_index == 96){
-//            return 4;
-//        } else{
         return (back_index - front_index);
-//        }
     }
 
     std::string fifo::top() {
@@ -58,17 +54,13 @@ namespace lab3 {
 
     void fifo::enqueue(std::string input) {
         std::cout << "Inserting" << input << '\n';
-//        fifo_storage[back_index] = input;
-//        back_index = (back_index + 1) % fifo_storage.capacity();///back index ++
         fifo_storage[(back_index) % fifo_storage.capacity()] = input;
         back_index++;
-//        }
     }
 
 
     void fifo::dequeue() {
         std::cout << "Removing" << fifo_storage[front_index % fifo_storage.capacity()] << '\n';
         front_index ++;
-//        front_index = (front_index + 1) % fifo_storage.capacity(); ///front index ++
     }
 }
