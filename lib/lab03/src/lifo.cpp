@@ -15,14 +15,11 @@ namespace lab3 {
     lifo::lifo(const lifo &original) {
         lifo_storage.reserve(original.lifo_storage.capacity());
         index = original.index;
-//        for (int i = 0; i < index; i++){
         lifo_storage = original.lifo_storage;
-//        }
     }
 
     lifo::~lifo() {
         index = -1;
-        //delete []lifo_storage;
     }
 
     lifo &lifo::operator=(const lifo &right) {
@@ -30,12 +27,7 @@ namespace lab3 {
             return *this;
         }
         index = right.index;
-        //allocated_length = rhs.allocated_length;
-        //data = new std::string[allocated_length];
         lifo_storage= right.lifo_storage;
-        //for(int i=0; i<allocated_length; i++){
-        //    data[i]=rhs.data[i];
-        //}
         return *this;
     }
 
@@ -46,7 +38,6 @@ namespace lab3 {
 
         return false;
     }
-    //return false;
 
     int lifo::size()
     {
@@ -55,7 +46,6 @@ namespace lab3 {
 
     std::string lifo::top() {
         return lifo_storage[index];
-        //return std::__cxx11::string();
     }
 
     void lifo::push(std::string input) {
