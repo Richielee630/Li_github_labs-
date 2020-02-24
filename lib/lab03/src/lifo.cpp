@@ -42,6 +42,7 @@ namespace lab3 {
     int lifo::size()
     {
         return index + 1 ;
+
     }
 
     std::string lifo::top() {

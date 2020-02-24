@@ -27,7 +27,8 @@ namespace lab2 {
 
     void stringVector::reserve(unsigned new_size) {
         std::string *temp = new std::string[new_size]; // Create a new array
-        for(int i =0; i < new_size; i++){
+        for(int i =0; i < new_size; i++)
+        {
             if(i < length){
                 temp[i] = data[i];
             }
