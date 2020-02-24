@@ -96,10 +96,6 @@ namespace lab4 {
         return is_number(input_string);
     }
 
-    bool calculator::isParen(std::string input_string) {
-        return false;
-    }
-
     bool calculator::is_number(std::string input_string) {
         if(input_string.empty()){
             return false;
@@ -121,15 +117,6 @@ namespace lab4 {
         return true;
     }
 
-
-    int calculator::get_number(std::string input_string) {
-        return 0;
-    }
-
-    std::string calculator::get_operator(std::string input_string) {
-        return std::string();
-    }
-
     int calculator::operator_priority(std::string operator_in) {
         if(operator_in == "+" || operator_in == "-"){
             return 0;//low priority
@@ -139,31 +126,6 @@ namespace lab4 {
         }
         return 2;//for "^"
     }
-
-    int calculator::GetOperatorWeight(std::string op) {
-        return 0;
-    }
-
-    int calculator::HasHigherPrecedence(std::string op1, std::string op2) {
-        int op1Weight = GetOperatorWeight(op1);
-        int op2Weight = GetOperatorWeight(op2);
-
-        // If operators have equal precedence, return true if they are left associative.
-        // return false, if right associative.
-        // if operator is left-associative, left one should be given priority.
-        if(op1Weight == op2Weight)
-        {
-            if(IsRightAssociative(op1)) return false;
-            else return true;
-        }
-        return op1Weight > op2Weight;
-        return 0;
-    }
-
-    int calculator::IsRightAssociative(std::string op) {
-        return op == "^";
-    }
-
 
     std::ostream &operator<<(std::ostream &stream, calculator &RHS) {
         std::stringstream st;

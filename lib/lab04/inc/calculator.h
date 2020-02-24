@@ -25,14 +25,9 @@ namespace lab4{
         friend std::ostream& operator<<(std::ostream& stream, calculator& RHS); //Stream out overload. Should return in the format "Infix: #,#,#,#\nPostfix: #,#,#,#"
         bool is_operator(std::string input_string);
         bool IsOperand(std::string input_string);
-        bool isParen(std::string input_string);
         bool is_number(std::string input_string);
-        int get_number(std::string input_string);
-        std::string get_operator(std::string input_string);
         int operator_priority(std::string operator_in);
-        int IsRightAssociative(std::string op);
-        int GetOperatorWeight(std::string op);
-        int HasHigherPrecedence(std::string op1, std::string op2);
+
 
         //return (input_string >= "0" && input_string <= "9");
     };
