@@ -50,14 +50,14 @@ namespace lab3 {
     }
 
     void lifo::push(std::string input) {
-        std::cout << "Inserting" << input << '\n';
+        //std::cout << "Inserting" << input << '\n';
         lifo_storage[index + 1] = input;
         index++;
     }
 
     void lifo::pop()
     {
-        std::cout << "Removing" << lifo_storage[index] <<'\n';
+        //std::cout << "Removing" << lifo_storage[index] <<'\n';
         index--;
     }
 }

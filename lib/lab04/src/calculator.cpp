@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 #include <math.h>
 #include "calculator.h"
 namespace lab4 {
@@ -165,32 +166,40 @@ namespace lab4 {
 
 
     std::ostream &operator<<(std::ostream &stream, calculator &RHS) {
+        std::stringstream st;
         lab3::fifo fifo_inter;
-        stream << "Infix: ";
+        st << "Infix: ";
         while(!RHS.infix_expression.is_empty()){
-            stream << RHS.infix_expression.top();
+            st << RHS.infix_expression.top();
             fifo_inter.enqueue(RHS.infix_expression.top());
             RHS.infix_expression.dequeue();
             if(!RHS.infix_expression.is_empty()){
-                stream<<",";
+                st<<",";
             }
         }
         RHS.infix_expression = fifo_inter;
         lab3::fifo fifo_inter2;
-        stream << "\nPostfix: ";
+        st << "\nPostfix: ";
         while(!RHS.postfix_expression.is_empty()){
-            stream << RHS.postfix_expression.top();
+            st << RHS.postfix_expression.top();
             fifo_inter2.enqueue(RHS.postfix_expression.top());
             RHS.postfix_expression.dequeue();
             if(!RHS.postfix_expression.is_empty()){
-                stream << ",";
+                st << ",";
             }
         }
         RHS.postfix_expression = fifo_inter2;
+        stream << st.str();
         return stream;
     }
 
     std::istream &operator>>(std::istream &stream, calculator &RHS) {
+        std::string get;
+        std::string input;
+        while(stream >> get){
+            input += get;
+        }
+        RHS = calculator(input);
         return stream;
     }
 
