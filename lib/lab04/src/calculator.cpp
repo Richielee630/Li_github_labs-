@@ -14,32 +14,32 @@ namespace lab4 {
         }
     }
 
-    void calculator::convert_to_postfix(lab3::fifo infix_expres) {
+    void calculator::convert_to_postfix(lab3::fifo infixExpression) {
         //fifo postfix_expression
         lab3::lifo stack = lab3::lifo();
-        while(!(infix_expres.is_empty())){
-            if(IsOperand(infix_expres.top())){
-                postfix_expression.enqueue(infix_expres.top());
-            }else if(is_operator(infix_expres.top())){
-                if(stack.is_empty()||stack.top() == "(" ||operator_priority(infix_expres.top())>operator_priority(stack.top())){
-                    stack.push(infix_expres.top());
+        while(!(infixExpression.is_empty())){
+            if(IsOperand(infixExpression.top())){
+                postfix_expression.enqueue(infixExpression.top());
+            }else if(is_operator(infixExpression.top())){
+                if(stack.is_empty()||stack.top() == "(" || operator_priority(infixExpression.top()) > operator_priority(stack.top())){
+                    stack.push(infixExpression.top());
                 }else{
-                    while(!stack.is_empty() && is_operator(stack.top()) && operator_priority(stack.top())>=operator_priority(infix_expres.top())){
+                    while(!stack.is_empty() && is_operator(stack.top()) && operator_priority(stack.top())>=operator_priority(infixExpression.top())){
                         postfix_expression.enqueue(stack.top());
                         stack.pop();
                     }
-                    stack.push(infix_expres.top());
+                    stack.push(infixExpression.top());
                 }
-            }else if(infix_expres.top() == "(" ){
-                stack.push(infix_expres.top());
-            }else if(infix_expres.top() == ")"){
+            }else if(infixExpression.top() == "(" ){
+                stack.push(infixExpression.top());
+            }else if(infixExpression.top() == ")"){
                 while(stack.top()!="("){
                     postfix_expression.enqueue(stack.top());
                     stack.pop();
                 }
                 stack.pop();
             }
-            infix_expres.dequeue();
+            infixExpression.dequeue();
         }
         while(!stack.is_empty()){
             postfix_expression.enqueue(stack.top());
