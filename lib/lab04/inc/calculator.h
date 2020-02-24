@@ -5,13 +5,14 @@
 #include "fifo.h"
 #include "expressionstream.h"
 
+
 namespace lab4{
     class calculator {
         lab3::fifo infix_expression;
         lab3::fifo postfix_expression;
 
         void parse_to_infix(std::string &input_expression); //PRIVATE function used for converting input string into infix notation
-        void convert_to_postfix(lab3::fifo infix_expression); //PRIVATE function used for converting infix FIFO to postfix
+        void convert_to_postfix(lab3::fifo infix_expres); //PRIVATE function used for converting infix FIFO to postfix
 
 
     public:
@@ -32,8 +33,8 @@ namespace lab4{
         int GetOperatorWeight(std::string op);
         int HasHigherPrecedence(std::string op1, std::string op2);
 
-            //return (input_string >= "0" && input_string <= "9");
-        };
-    }
+        //return (input_string >= "0" && input_string <= "9");
+    };
+}
 
 #endif //CMPE126S20_LABS_CALCULATOR_H
