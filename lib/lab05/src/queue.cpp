@@ -1,5 +1,8 @@
 #include "queue.h"
 namespace lab5{
+//    queue::queue() {
+//
+//    }
     queue::queue() {
 
     }
