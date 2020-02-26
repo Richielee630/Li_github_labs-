@@ -1,7 +1,10 @@
 #include <linked_list.h>
 namespace lab5 {
-    linked_list::linked_list() : head(nullptr), tail(nullptr)
-    {}
+    linked_list::linked_list()
+    {
+        head = nullptr;
+        tail = nullptr;
+    }
 
     linked_list::linked_list(std::string &data) {
         head = tail = new node(data);
@@ -32,11 +35,34 @@ namespace lab5 {
     }
 
     linked_list::~linked_list(){
-        while (head != nullptr);
-        //dequeue();
+        while (head != nullptr){
+            node *tmp = head;
+
+        }
     }
 
     linked_list &lab5::linked_list::operator=(const linked_list &RHS) {
+        if (this != &RHS)
+        {
+            if (head != nullptr)
+                delete this;
+            if (RHS.head != nullptr)
+            {
+                node *RHS_tmp = RHS.head;
+                node *tmp = head = new node(RHS_tmp->data);
+                //size = RHS.size;
+                RHS_tmp = RHS_tmp->next;
+                while (RHS_tmp != nullptr)
+                {
+                    tmp->next = new node(RHS_tmp->data);
+                    tmp = tmp->next;
+                    tail = tmp;
+                    RHS_tmp = RHS_tmp->next;
+                }
+                //size = RHS.size;
+            }
+        }
+        return *this;
         //return <#initializer#>;
     }
 
@@ -46,6 +72,12 @@ namespace lab5 {
     }
 
     unsigned linked_list::listSize() const {
+        int c = 0;
+        node *tmp = head;
+        while (tmp != nullptr){
+            c++;
+            tmp = tmp->next;
+        }
         return 0;
     }
 
