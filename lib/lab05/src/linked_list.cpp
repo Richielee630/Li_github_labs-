@@ -35,9 +35,11 @@ namespace lab5 {
     }
 
     linked_list::~linked_list(){
-        while (head != nullptr){
-            node *tmp = head;
-
+        node *next = head;
+        while (next) {
+            node *kill = next;
+            next = next->next;
+            delete kill;
         }
     }
 
@@ -72,17 +74,42 @@ namespace lab5 {
     }
 
     unsigned linked_list::listSize() const {
-        int c = 0;
-        node *tmp = head;
-        while (tmp != nullptr){
-            c++;
-            tmp = tmp->next;
+//        int c = 0;
+//        node *tmp = head;
+//        while (tmp != nullptr){
+//            c++;
+//            tmp = tmp->next;
+//        }
+//        return c;
+        int count = 0;
+        node* current = head;
+        while (current != nullptr)
+        {
+            count++;
+            current = current->next;
         }
-        return 0;
+        return count;
     }
 
     void linked_list::insert(const std::string input, unsigned int location) {
-
+        if (isEmpty()) {
+            node *n = new node;
+            n->next = NULL;
+            n->element = T;
+            if (head != NULL) {
+                tail = head;
+                while (tail->next != NULL) {
+                    tmp = tail;
+                    tail = tail->next;
+                }
+                tail->next = n;
+            }
+            else {
+                head = n;
+            }
+            size++;
+            sortList();
+        }
     }
 
     void linked_list::append(const std::string input) {
@@ -90,7 +117,14 @@ namespace lab5 {
     }
 
     void linked_list::remove(unsigned location) {
+        tail = head;
 
+        while ((tail != NULL) && (tail->element != T)) {
+            tmp = tail;x
+            tail = tail->next;
+        }
+        tail = tail->next;
+        tmp->next = tail;
     }
 
     std::ostream& operator<<(std::ostream &stream, linked_list &RHS) {
