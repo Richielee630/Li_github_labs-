@@ -3,7 +3,6 @@
 namespace lab5 {
     linked_list::linked_list()
     {
-        //create a empty header node
         head = nullptr;
         tail = nullptr;
     }
