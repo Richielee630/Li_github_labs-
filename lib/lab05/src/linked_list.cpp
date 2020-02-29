@@ -122,25 +122,25 @@ namespace lab5 {
             newnode->next = cur->next;
             cur->next = newnode;
         }
-        /*
-        if (isEmpty()) {
-            node *n = new node;
-            n->next = NULL;
-            n->element = T;
-            if (head != NULL) {
-                tail = head;
-                while (tail->next != NULL) {
-                    tmp = tail;
-                    tail = tail->next;
-                }
-                tail->next = n;
-            }
-            else {
-                head = n;
-            }
-            size++;
-            sortList();
-        }*/
+//
+//        if (isEmpty()) {
+//            node *n = new node;
+//            n->next = NULL;
+//            n->element = T;
+//            if (head != NULL) {
+//                tail = head;
+//                while (tail->next != NULL) {
+//                    tmp = tail;
+//                    tail = tail->next;
+//                }
+//                tail->next = n;
+//            }
+//            else {
+//                head = n;
+//            }
+//            size++;
+//            sortList();
+//        }
     }
 
     void linked_list::append(const std::string input) {
@@ -184,15 +184,13 @@ namespace lab5 {
                 }
             }
         }
-        /*
-        tail = head;
-        while ((tail != NULL) && (tail->element != T)) {
-            tmp = tail;x
-            tail = tail->next;
-        }
-        tail = tail->next;
-        tmp->next = tail;
-        */
+//        tail = head;
+//        while ((tail != NULL) && (tail->element != T)) {
+//            tmp = tail;x
+//            tail = tail->next;
+//        }
+//        tail = tail->next;
+//        tmp->next = tail;
     }
 
     std::ostream& operator<<(std::ostream &stream, linked_list &RHS) {
