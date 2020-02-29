@@ -63,6 +63,7 @@ namespace lab5{
     }
 
     std::istream& operator>>(std::istream &stream, stack &RHS) {
+        stream >> RHS;
         return stream;
     }
 }

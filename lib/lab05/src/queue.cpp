@@ -56,6 +56,7 @@ namespace lab5{
     }
 
     std::istream& operator>>(std::istream &stream, queue &RHS) {
+        stream >> RHS;
         return stream;
     }
 }
