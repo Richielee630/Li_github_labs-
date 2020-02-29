@@ -1,5 +1,4 @@
 #include <linked_list.h>
-#include <expressionstream.h>
 
 namespace lab5 {
     linked_list::linked_list()
@@ -11,25 +10,14 @@ namespace lab5 {
 
     linked_list::linked_list(std::string &data) {
         //construct linked_list from raw data, you need to parse the data to tokens using the way for lab01
-        lab1::expressionstream stream(data);
-        head = nullptr;
-        tail = nullptr;
-        while(true){
-          std::string nxt = stream.get_next_token(); 
-          if(nxt == std::string("\0")){
-            break;
-          }
-          node * newnode = new node(nxt);
-          if (head) {
-            tail->next = newnode;
-          }else{
-            head = newnode;
-          }
-          tail = newnode;
-        }
+        node* newnode = new node(data); 
+        head = newnode;
+        tail = head;
     }
 
     linked_list::linked_list(const linked_list &original) {
+        head = nullptr;
+        tail = nullptr;
         if (original.head != nullptr)
         {
             node *original_tmp = original.head;
@@ -44,12 +32,6 @@ namespace lab5 {
                 tail = tmp;
                 original_tmp = original_tmp->next;
             }
-        }
-        else
-        {
-            head = nullptr;
-            tail = nullptr;
-            //size = 0;
         }
     }
 
@@ -208,19 +190,54 @@ namespace lab5 {
     std::ostream& operator<<(std::ostream &stream, linked_list &RHS) {
         node* cur = RHS.head;
         while(cur){
-         stream << cur->data;
+         stream << cur->data << " -> ";
          cur = cur->next; 
         } 
+        stream << "NULL";
         return stream;
     }
 
     std::istream& operator>>(std::istream &stream, linked_list &RHS) {
-         
+        std::string input;
+        stream >> input;
+        RHS.append(input);         
         return stream;
     }
 
     void linked_list::sort() {
-      
+       if(head == nullptr){
+         return;
+       }
+       node* prev = head;
+       node* cur = head->next;
+       while(cur){
+         node* next = cur->next;
+         node* loop = head;
+         if(cur->data <= loop->data){
+           cur->next = loop;
+           head = cur;
+           prev->next = next;
+           cur = next;
+         }else{
+           node* loop_next = head->next;
+           while(loop_next!=cur){
+             if(cur->data <= loop_next->data){
+               loop->next = cur;
+               cur->next = loop_next;
+               prev->next = next;
+               cur = next;
+               break; 
+             }else{
+               loop = loop_next;
+               loop_next = loop_next->next; 
+             } 
+           } 
+           if(loop_next == cur){
+             prev = cur;
+             cur = next;
+           }
+         }
+       } 
     }
 
     std::string linked_list::get_value_at(unsigned location) {
