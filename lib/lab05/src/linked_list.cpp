@@ -41,6 +41,8 @@ namespace lab5 {
             next = next->next;
             delete kill;
         }
+        head = nullptr;
+        tail = nullptr;
     }
 
     linked_list &lab5::linked_list::operator=(const linked_list &RHS) {
@@ -160,6 +162,8 @@ namespace lab5 {
                 if(head == nullptr){
                     tail = head;
                 }
+                delete cur;
+                cur = nullptr;
             }
         }else{
             node* cur = head;
@@ -170,8 +174,14 @@ namespace lab5 {
             if(cur->next){
                 node* get = cur->next;
                 cur->next = cur->next->next;
+                if(tail == get){
+                  tail = cur;
+                }
                 delete get;
                 get = nullptr;
+                if(tail == get){
+                  tail = cur;
+                }
             }
         }
         /*
