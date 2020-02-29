@@ -10,7 +10,7 @@ namespace lab5 {
 
     linked_list::linked_list(std::string &data) {
         //construct linked_list from raw data, you need to parse the data to tokens using the way for lab01
-        node* newnode = new node(data); 
+        node* newnode = new node(data);
         head = newnode;
         tail = head;
     }
@@ -51,12 +51,12 @@ namespace lab5 {
                 //delete this;
                 node* cur = head;
                 while(cur){
-                 node* next = cur->next;
-                 delete cur;
-                 cur = next;
+                    node* next = cur->next;
+                    delete cur;
+                    cur = next;
                 }
                 head = tail = nullptr;
-             }
+            }
             if (RHS.head != nullptr)
             {
                 node *RHS_tmp = RHS.head;
@@ -80,7 +80,7 @@ namespace lab5 {
 
     bool linked_list::isEmpty() const {
         if (head == nullptr){
-          return true;
+            return true;
         }
         return false;
     }
@@ -104,22 +104,22 @@ namespace lab5 {
     }
 
     void linked_list::insert(const std::string input, unsigned int location) {
-        //we assume the location is valid 
+        //we assume the location is valid
         node* newnode = new node(input);
         if(location == 0){
-          newnode->next = head;
-          head = newnode;
-          if(tail == nullptr){
-            tail = head;
-          } 
+            newnode->next = head;
+            head = newnode;
+            if(tail == nullptr){
+                tail = head;
+            }
         }else{
-          node* cur = head;
-          while(location > 1){
-            --location;
-            cur = cur->next;
-          } 
-          newnode->next = cur->next;
-          cur->next = newnode;
+            node* cur = head;
+            while(location > 1){
+                --location;
+                cur = cur->next;
+            }
+            newnode->next = cur->next;
+            cur->next = newnode;
         }
         /*
         if (isEmpty()) {
@@ -143,56 +143,55 @@ namespace lab5 {
     }
 
     void linked_list::append(const std::string input) {
-      node* newnode = new node(input);
-      if(tail == nullptr){
-        head = newnode;
-        tail = head; 
-      }else{
-        tail->next = newnode;
-        tail = newnode;  
-      }
+        node* newnode = new node(input);
+        if(tail == nullptr){
+            head = newnode;
+            tail = head;
+        }else{
+            tail->next = newnode;
+            tail = newnode;
+        }
     }
 
     void linked_list::remove(unsigned location) {
         if(location == 0){
-          node* cur = head;
-          if(cur){
-            head = head->next;
-            if(head == nullptr){
-              tail = head;
-            } 
-          } 
+            node* cur = head;
+            if(cur){
+                head = head->next;
+                if(head == nullptr){
+                    tail = head;
+                }
+            }
         }else{
-          node* cur = head;
-          while(location > 1){
-            --location;
-            cur = cur->next;  
-          }
-          if(cur->next){
-            node* get = cur->next;
-            cur->next = cur->next->next;
-            delete get;
-            get = nullptr; 
-          }
+            node* cur = head;
+            while(location > 1){
+                --location;
+                cur = cur->next;
+            }
+            if(cur->next){
+                node* get = cur->next;
+                cur->next = cur->next->next;
+                delete get;
+                get = nullptr;
+            }
         }
         /*
         tail = head;
-
         while ((tail != NULL) && (tail->element != T)) {
             tmp = tail;x
             tail = tail->next;
         }
         tail = tail->next;
-        tmp->next = tail; s
+        tmp->next = tail;
         */
     }
 
     std::ostream& operator<<(std::ostream &stream, linked_list &RHS) {
         node* cur = RHS.head;
         while(cur){
-         stream << cur->data << " -> ";
-         cur = cur->next; 
-        } 
+            stream << cur->data << " -> ";
+            cur = cur->next;
+        }
         stream << "NULL";
         return stream;
     }
@@ -200,54 +199,54 @@ namespace lab5 {
     std::istream& operator>>(std::istream &stream, linked_list &RHS) {
         std::string input;
         stream >> input;
-        RHS.append(input);         
+        RHS.append(input);
         return stream;
     }
 
     void linked_list::sort() {
-       if(head == nullptr){
-         return;
-       }
-       node* prev = head;
-       node* cur = head->next;
-       while(cur){
-         node* next = cur->next;
-         node* loop = head;
-         if(cur->data <= loop->data){
-           cur->next = loop;
-           head = cur;
-           prev->next = next;
-           cur = next;
-         }else{
-           node* loop_next = head->next;
-           while(loop_next!=cur){
-             if(cur->data <= loop_next->data){
-               loop->next = cur;
-               cur->next = loop_next;
-               prev->next = next;
-               cur = next;
-               break; 
-             }else{
-               loop = loop_next;
-               loop_next = loop_next->next; 
-             } 
-           } 
-           if(loop_next == cur){
-             prev = cur;
-             cur = next;
-           }
-         }
-       } 
+        if(head == nullptr){
+            return;
+        }
+        node* prev = head;
+        node* cur = head->next;
+        while(cur){
+            node* next = cur->next;
+            node* loop = head;
+            if(cur->data <= loop->data){
+                cur->next = loop;
+                head = cur;
+                prev->next = next;
+                cur = next;
+            }else{
+                node* loop_next = head->next;
+                while(loop_next!=cur){
+                    if(cur->data <= loop_next->data){
+                        loop->next = cur;
+                        cur->next = loop_next;
+                        prev->next = next;
+                        cur = next;
+                        break;
+                    }else{
+                        loop = loop_next;
+                        loop_next = loop_next->next;
+                    }
+                }
+                if(loop_next == cur){
+                    prev = cur;
+                    cur = next;
+                }
+            }
+        }
     }
 
     std::string linked_list::get_value_at(unsigned location) {
-       node* cur = head;
-       while(location > 0){
-         cur = cur->next;
-         --location; 
-       }
-       if(cur)
-         return cur->data;
-       return "";
+        node* cur = head;
+        while(location > 0){
+            cur = cur->next;
+            --location;
+        }
+        if(cur)
+            return cur->data;
+        return "";
     }
 }

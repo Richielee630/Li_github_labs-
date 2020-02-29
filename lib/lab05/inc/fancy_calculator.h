@@ -20,6 +20,10 @@ namespace lab5{
 
         int calculate(); //Return the calculation of the postfix expression
         friend std::ostream& operator<<(std::ostream& stream, calculator& RHS); //Stream out overload. Should return in the format "Infix: #,#,#,#\nPostfix: #,#,#,#"
+        bool is_operator(std::string input_string);
+        bool IsOperand(std::string input_string);
+        bool is_number(std::string input_string);
+        int operator_priority(std::string operator_in);
     };
 }
 
