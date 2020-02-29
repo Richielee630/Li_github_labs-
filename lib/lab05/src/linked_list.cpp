@@ -201,7 +201,7 @@ namespace lab5 {
             tail = tail->next;
         }
         tail = tail->next;
-        tmp->next = tail;
+        tmp->next = tail; s
         */
     }
 
