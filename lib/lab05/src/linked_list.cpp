@@ -105,7 +105,6 @@ namespace lab5 {
     }
 
     void linked_list::insert(const std::string input, unsigned int location) {
-        //we assume the location is valid
         node* newnode = new node(input);
         if(location == 0){
             newnode->next = head;
