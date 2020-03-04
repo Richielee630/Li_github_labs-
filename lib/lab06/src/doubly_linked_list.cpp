@@ -2,11 +2,15 @@
 
 namespace lab6{
     doubly_linked_list::doubly_linked_list() {
-
+        head = nullptr;
+        tail = nullptr;
     }
 
-    doubly_linked_list::doubly_linked_list(int input) {
+    doubly_linked_list::doubly_linked_list(int input){
 
+        node *newnode = new node;
+
+        newnode->get_data()=input;
     }
 
     doubly_linked_list::doubly_linked_list(std::vector<int> vector_input) {
@@ -30,7 +34,14 @@ namespace lab6{
     }
 
     unsigned doubly_linked_list::size() {
-
+        int len = 0;
+        node *current;
+        while (current != nullptr)
+        {
+            len++;
+            current = current->next;
+        }
+        return len;
     }
 
     bool doubly_linked_list::is_empty() {

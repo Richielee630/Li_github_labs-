@@ -1,11 +1,9 @@
 #include "stack.h"
 namespace lab5{
     stack::stack():storage_structure() {
-   
     }
 
-    stack::stack(std::string &data):storage_structure(data) {
-
+    stack::stack(std::string &data):storage_structure(data){
     }
 
     stack::stack(const stack &original):storage_structure(original.storage_structure) {

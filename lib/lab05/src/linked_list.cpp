@@ -199,6 +199,7 @@ namespace lab5 {
             cur = cur->next;
         }
         stream << "NULL";
+
         return stream;
     }
 

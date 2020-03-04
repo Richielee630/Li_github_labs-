@@ -10,6 +10,6 @@ namespace lab5 {
 
         explicit node(const std::string &data) : data(data), next(nullptr){};
     };
-}
+    }
 
 #endif

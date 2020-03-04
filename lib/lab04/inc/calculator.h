@@ -27,8 +27,6 @@ namespace lab4{
         bool IsOperand(std::string input_string);
         bool is_number(std::string input_string);
         int operator_priority(std::string operator_in);
-
-
         //return (input_string >= "0" && input_string <= "9");
     };
 }
