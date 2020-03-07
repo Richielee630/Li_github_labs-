@@ -175,13 +175,21 @@ namespace lab6{
     }
 
     doubly_linked_list doubly_linked_list::split(unsigned position) {
-        ///1.创建链表list
-        ///2.指针指向头
+        ///1.创建链表list1,2
+        ///2.location之前的放进list1，location之后的放list2
+        node *split1;
+        node *split2;
         node *cur1 = head;
         while (position > 0){
             --position;
             cur1 = cur1->next;
         }
+        while (cur1->prev){
+            split1->get_data() = cur1->get_data();
+            cur1 = cur1->prev;
+            return;
+        }
+
     }
 
     doubly_linked_list doubly_linked_list::split_set(unsigned position_1, unsigned position_2) {
@@ -286,7 +294,7 @@ namespace lab6{
     std::istream &operator>>(std::istream &stream, doubly_linked_list &RHS) {
         std::string input;
         stream >> input;
-        RHS.append(data);
+        RHS.append();
         return stream;
     }
 }
