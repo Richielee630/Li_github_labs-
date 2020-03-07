@@ -35,7 +35,6 @@ namespace lab3 {
         if(index == -1){
             return true;
         }
-
         return false;
     }
 
