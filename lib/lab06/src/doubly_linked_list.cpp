@@ -93,7 +93,7 @@ namespace lab6{
         }
         output.push_back(cur_front->get_data());///当set包含position to的data时的情况
         return output;
-        ///vector 怎么 return
+        ///vector 怎么 return?
         ///此时如何return出两个position之间的strings？
     }
 
