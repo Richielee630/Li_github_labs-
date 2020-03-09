@@ -204,8 +204,13 @@ namespace lab6{
         new_list.head = cur1;
         new_list.tail = tail;
         tail = cur1->prev;
-        tail->next = nullptr;
+        if(tail)
+          tail->next = nullptr;
         new_list.head->prev = nullptr;
+        if(head == cur1){
+           head = nullptr;
+           tail = nullptr;
+        }
         return  new_list;
 //        while (cur1->prev){
 //            split1->get_data() = cur1->get_data();
@@ -272,16 +277,19 @@ namespace lab6{
 
         new_node_1->prev = pos_1->prev;
         new_node_1->next = pos_1->next;
-        new_node_2->prev = pos_2->prev;
-        new_node_2->next = pos_2->next;
         if(pos_1->prev)
             pos_1->prev->next = new_node_1;
         if(pos_1->next)
             pos_1->next->prev = new_node_1;
+
+        new_node_2->prev = pos_2->prev;
+        new_node_2->next = pos_2->next;
+
         if(pos_2->prev)
             pos_2->prev->next = new_node_2;
         if(pos_2->next)
             pos_2->next->prev = new_node_2;
+
         if(pos_1 == head){
             head = new_node_1;
         }
@@ -294,6 +302,8 @@ namespace lab6{
         if(pos_2 == tail){
             tail = new_node_2;
         }
+        delete pos_1;
+        delete pos_2;
     }
 
     void doubly_linked_list::swap_set(unsigned location_1_start, unsigned location_1_end, unsigned location_2_start,
@@ -370,6 +380,7 @@ namespace lab6{
                 while (RHS_tmp != nullptr)
                 {
                     append(RHS_tmp->get_data());
+                    RHS_tmp = RHS_tmp->next;
                 }
             }
         }
@@ -405,19 +416,26 @@ namespace lab6{
     }
 
     std::ostream &operator<<(std::ostream &stream, doubly_linked_list &RHS) {
+        stream << "NULL <- ";
         node* cur = RHS.head;
         while(cur){
-            stream << cur->get_data() << " -> ";
+            stream << cur->get_data() ;
             cur = cur->next;
+            if(cur){
+               stream << " <-> ";
+            }
+            else{
+               stream << " -> ";
+            }
         }
         stream << "NULL";
         return stream;
     }
 
     std::istream &operator>>(std::istream &stream, doubly_linked_list &RHS) {
-        int input;
+        std::string input;
         stream >> input;
-        RHS.append(input);
+        RHS.append(stoi(input));
         return stream;
     }
 }
