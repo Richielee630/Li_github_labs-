@@ -204,7 +204,9 @@ namespace lab6{
         new_list.head = cur1;
         new_list.tail = tail;
         tail = cur1->prev;
-        tail->next = nullptr;
+        if (tail){
+            tail->next = nullptr;
+        }
         new_list.head->prev = nullptr;
         return  new_list;
 //        while (cur1->prev){
@@ -370,6 +372,7 @@ namespace lab6{
                 while (RHS_tmp != nullptr)
                 {
                     append(RHS_tmp->get_data());
+                    RHS_tmp = RHS_tmp->next;
                 }
             }
         }
